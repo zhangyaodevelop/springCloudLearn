@@ -1,6 +1,6 @@
 package com.cloud.learn.dao;
 
-import com.cloud.learn.UserInfo;
+import com.cloud.learn.model.UserInfo;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(String userUuid);

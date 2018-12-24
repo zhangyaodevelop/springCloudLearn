@@ -3,8 +3,8 @@ package com.cloud.learn.controller;
 
 import com.cloud.learn.code.SysMsgCode;
 import com.cloud.learn.feign.IOrderFeign;
-import com.cloud.learn.UserInfo;
 import com.cloud.learn.model.ResponseData;
+import com.cloud.learn.model.UserInfo;
 import com.cloud.learn.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

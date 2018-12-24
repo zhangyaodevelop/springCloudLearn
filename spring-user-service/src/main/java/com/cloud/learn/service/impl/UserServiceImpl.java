@@ -1,7 +1,6 @@
 package com.cloud.learn.service.impl;
 
 import com.cloud.learn.dao.UserInfoMapper;
-import com.cloud.learn.UserInfo;
 import com.cloud.learn.service.IUserService;
 import com.cloud.learn.util.UUIDUtils;
 import org.springframework.stereotype.Service;
