@@ -1,0 +1,26 @@
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://spring-eureka-service:8060/eureka/
+spring:
+  application:
+    name: spring-route-service
+server:
+  port: 8061
+
+zuul:
+  routes:
+    spring-user-service: #服务名称
+      path: /spring-user-service/** #请求地址
+      serviceId: spring-user-service #转发到的服务name
+    spring-order-service: #服务名称
+          path: /spring-order-service/** #请求地址
+          serviceId: spring-order-service #转发到的服务name
+
+
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.learn.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cloud.learn.UserInfo">
+    <id column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_uuid, user_name, mobile_phone, email, sex, user_type, position
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.learn.UserInfo">
+    insert into user_info (user_uuid, user_name, mobile_phone, 
+      email, sex, user_type, 
+      position)
+    values (#{userUuid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.learn.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userUuid != null">
+        user_uuid,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userUuid != null">
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.learn.UserInfo">
+    update user_info
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.learn.UserInfo">
+    update user_info
+    set user_name = #{userName,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR}
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.order.service.dao.OrderEntryInfoMapper">
+  <resultMap id="BaseResultMap" type="com.order.service.model.OrderEntryInfo">
+    <id column="order_entry_uuid" jdbcType="VARCHAR" property="orderEntryUuid" />
+    <result column="order_uuid" jdbcType="VARCHAR" property="orderUuid" />
+    <result column="buy_price" jdbcType="DECIMAL" property="buyPrice" />
+    <result column="buy_quantity" jdbcType="DECIMAL" property="buyQuantity" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="base_price" jdbcType="DECIMAL" property="basePrice" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_entry_uuid, order_uuid, buy_price, buy_quantity, product_code, unit, base_price, 
+    create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_entry_info
+    where order_entry_uuid = #{orderEntryUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_entry_info
+    where order_entry_uuid = #{orderEntryUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.order.service.model.OrderEntryInfo">
+    insert into order_entry_info (order_entry_uuid, order_uuid, buy_price, 
+      buy_quantity, product_code, unit, 
+      base_price, create_date)
+    values (#{orderEntryUuid,jdbcType=VARCHAR}, #{orderUuid,jdbcType=VARCHAR}, #{buyPrice,jdbcType=DECIMAL}, 
+      #{buyQuantity,jdbcType=DECIMAL}, #{productCode,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{basePrice,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.order.service.model.OrderEntryInfo">
+    insert into order_entry_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderEntryUuid != null">
+        order_entry_uuid,
+      </if>
+      <if test="orderUuid != null">
+        order_uuid,
+      </if>
+      <if test="buyPrice != null">
+        buy_price,
+      </if>
+      <if test="buyQuantity != null">
+        buy_quantity,
+      </if>
+      <if test="productCode != null">
+        product_code,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="basePrice != null">
+        base_price,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderEntryUuid != null">
+        #{orderEntryUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderUuid != null">
+        #{orderUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null">
+        #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="buyQuantity != null">
+        #{buyQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="productCode != null">
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="basePrice != null">
+        #{basePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.order.service.model.OrderEntryInfo">
+    update order_entry_info
+    <set>
+      <if test="orderUuid != null">
+        order_uuid = #{orderUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null">
+        buy_price = #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="buyQuantity != null">
+        buy_quantity = #{buyQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="productCode != null">
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="basePrice != null">
+        base_price = #{basePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_entry_uuid = #{orderEntryUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.order.service.model.OrderEntryInfo">
+    update order_entry_info
+    set order_uuid = #{orderUuid,jdbcType=VARCHAR},
+      buy_price = #{buyPrice,jdbcType=DECIMAL},
+      buy_quantity = #{buyQuantity,jdbcType=DECIMAL},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      base_price = #{basePrice,jdbcType=DECIMAL},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where order_entry_uuid = #{orderEntryUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

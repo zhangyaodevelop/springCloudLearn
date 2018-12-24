@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.order.service.dao.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.order.service.model.OrderInfo">
+    <id column="order_uuid" jdbcType="VARCHAR" property="orderUuid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="order_channels" jdbcType="VARCHAR" property="orderChannels" />
+    <result column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="delivery_cost" jdbcType="DECIMAL" property="deliveryCost" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_uuid, code, order_channels, user_uuid, total_price, delivery_cost, create_date, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where order_uuid = #{orderUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_info
+    where order_uuid = #{orderUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.order.service.model.OrderInfo">
+    insert into order_info (order_uuid, code, order_channels, 
+      user_uuid, total_price, delivery_cost, 
+      create_date, status)
+    values (#{orderUuid,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{orderChannels,jdbcType=VARCHAR}, 
+      #{userUuid,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, #{deliveryCost,jdbcType=DECIMAL}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.order.service.model.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderUuid != null">
+        order_uuid,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="orderChannels != null">
+        order_channels,
+      </if>
+      <if test="userUuid != null">
+        user_uuid,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="deliveryCost != null">
+        delivery_cost,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderUuid != null">
+        #{orderUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="orderChannels != null">
+        #{orderChannels,jdbcType=VARCHAR},
+      </if>
+      <if test="userUuid != null">
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryCost != null">
+        #{deliveryCost,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.order.service.model.OrderInfo">
+    update order_info
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="orderChannels != null">
+        order_channels = #{orderChannels,jdbcType=VARCHAR},
+      </if>
+      <if test="userUuid != null">
+        user_uuid = #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryCost != null">
+        delivery_cost = #{deliveryCost,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_uuid = #{orderUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.order.service.model.OrderInfo">
+    update order_info
+    set code = #{code,jdbcType=VARCHAR},
+      order_channels = #{orderChannels,jdbcType=VARCHAR},
+      user_uuid = #{userUuid,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      delivery_cost = #{deliveryCost,jdbcType=DECIMAL},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where order_uuid = #{orderUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
