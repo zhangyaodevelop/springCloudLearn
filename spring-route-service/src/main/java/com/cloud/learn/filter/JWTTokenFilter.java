@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Title
  * @Description ${DESCRIPTION}
  * @Author yao.zhang04@hand-china.com
- * @date: 2018/12/20
+ * @date: 2018/12/21
  */
 @Component
 public class JWTTokenFilter extends ZuulFilter {
